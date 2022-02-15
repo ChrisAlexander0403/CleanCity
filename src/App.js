@@ -1,24 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { createGlobalStyle } from 'styled-components';
+
+import ScrollToTop from './hooks/useScrollToTop';
+
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Navbar from './components/navbar/Navbar';
+import Craftmen from './pages/Craftmen';
+
+const GlobalStyle = createGlobalStyle`
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+  }
+  body{
+    background: #eee;
+  }
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+  header{
+    grid-area: header;
+  }
+  footer{
+    height: 500px;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Helmet>
+        <title>Clean City</title>
+      </Helmet>
+      <GlobalStyle />
+      <Router>
+        <ScrollToTop>
+          <Routes>
+            <Route path="/signin" exact element={<Signin />} />
+            <Route path="/signup" exact element={<Signup />} />
+            <Route path="/*" exact element={<>
+              <header>
+                <Navbar />
+              </header>
+              <Routes>
+                <Route exact path="/craftmen" element={<Craftmen />} />
+                <Route exact path="/crafthouses" element={<Home />} />
+                <Route exact path="/restaurants" element={<Home />} />
+                <Route exact path="/routes" element={<Home />} />
+                <Route exact path="/" element={<Home />} />
+                <Route path="*" exact element={<NotFound />} />
+              </Routes>
+              <footer>
+                <p>Footer</p>
+              </footer>
+            </>} />
+          </Routes>
+        </ScrollToTop>
+      </Router> 
+    </>
   );
 }
 
