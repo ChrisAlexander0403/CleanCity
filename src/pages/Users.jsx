@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useForm from '../hooks/useForm';
 import { signIn } from '../utils/validations';
 
-const Craftmen = () => {
+const Users = () => {
 
     const [values, setValues] = useState({
         firstname: '',
@@ -87,4 +87,4 @@ const Craftmen = () => {
     );
 }
 
-export default Craftmen;
+export default Users;

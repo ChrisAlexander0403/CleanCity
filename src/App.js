@@ -10,7 +10,8 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Navbar from './components/navbar/Navbar';
-import Craftmen from './pages/Craftmen';
+import Users from './pages/Users';
+import Reports from './pages/Reports';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -51,8 +52,8 @@ function App() {
                 <Navbar />
               </header>
               <Routes>
-                <Route exact path="/craftmen" element={<Craftmen />} />
-                <Route exact path="/crafthouses" element={<Home />} />
+                <Route exact path="/users" element={<Users />} />
+                <Route exact path="/reports" element={<Reports />} />
                 <Route exact path="/restaurants" element={<Home />} />
                 <Route exact path="/routes" element={<Home />} />
                 <Route exact path="/" element={<Home />} />

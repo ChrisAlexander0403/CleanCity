@@ -35,3 +35,11 @@ export function signIn(values){
 
     return errors;
 }
+
+export const report = (values) => {
+    let errors = {};
+    if (!values.title) errors.title = "Ingresa un título";
+    if (!values.description) errors.description = "Ingresa una descripción";
+    if (!values.place) errors.place = "Ingrese una dirección";
+    if (!values.photo) errors.photo = "Ingrese una foto";
+}
