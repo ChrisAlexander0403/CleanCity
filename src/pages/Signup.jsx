@@ -6,6 +6,8 @@ import useForm from '../hooks/useForm';
 import { signIn } from '../utils/validations';
 import Calendar from '../components/calendar/Calendar';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { signup } from '../features/user';
 
 const Signup = () => {
 
@@ -22,8 +24,16 @@ const Signup = () => {
 
   const calendar = useRef(null);
 
-  const submitForm = () => {
+  const dispatch = useDispatch();
 
+  const submitForm = () => {
+    dispatch(signup({
+      firstname: values.firstname,
+      lastname: values.lastname,
+      email: values.email,
+      password: values.password,
+      birthdate: values.birthdate
+    }));
   }
 
   const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, signIn);
