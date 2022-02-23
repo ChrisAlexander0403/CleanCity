@@ -14,7 +14,7 @@ const Navbar = () => {
 
     const handleLogout = async() => {
         try {
-            const { data } = await axios.delete('http://localhost:5001/api/logout', {
+            const { data } = await axios.post('http://localhost:5001/api/logout', {
                 email: user.email,
                 refreshToken: user.refreshToken
             });

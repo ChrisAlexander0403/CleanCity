@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { selectUser } from '../features/slices/userSlice';
+import { useSelector } from 'react-redux';
 
 import useForm from '../hooks/useForm';
 import { report } from '../utils/validations';
@@ -11,15 +14,25 @@ const Reports = () => {
         title: '',
         description: '',
         place: '',
-        photo: '',
-        status: '',
-        file: ''
+        files: []
     });
 
-    const updateUploadedFiles = (files) => setValues({ ...values, file: files});
+    const user = useSelector(selectUser);
 
-    const submitForm = () => {
-        
+    const updateUploadedFiles = (files) => setValues({ ...values, files: files});
+
+    const submitForm = async ({ title, description, place, status, files }) => {
+        try {
+            await axios.post('http://localhost/5000/api/reports', {
+                title: title,
+                description: description,
+                place: place,
+                files: files,
+                user: user._id
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, report);
