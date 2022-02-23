@@ -1,4 +1,4 @@
-export function signIn(values){
+export function signup(values){
     let errors = {};
     if (!values.firstname.trim()) 
         errors.firstname = "El nombre es requerido"
@@ -32,7 +32,22 @@ export function signIn(values){
         errors.confirmPassword = "Vuelve a ingresar la contraseña"
     else if (values.confirmPassword !== values.password)
         errors.confirmPassword = "Las contraseñas no coinciden"
+    if(!values.phone)
+        errors.phone = "El número teléfono es requerido"
+    else if(values.phone.length !== 10)
+        errors.phone = "El número debe tener 10 carácteres"
 
+    return errors;
+}
+
+export const signin = (values) => {
+    let errors = {};
+    if (!values.email.trim())
+        errors.email = "El correo es requerido"
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.—]+\.[A-Z]{2,}$/i.test(values.email))
+        errors.email = "La dirección de correo no es válida"
+    if (!values.password)
+        errors.password = "Ingresa una contraseña"
     return errors;
 }
 
