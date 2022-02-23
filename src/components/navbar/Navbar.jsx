@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { BiLogOut } from 'react-icons/bi';
 import axios from 'axios';
 
@@ -11,7 +11,6 @@ const Navbar = () => {
 
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleLogout = async() => {
         try {
@@ -21,7 +20,6 @@ const Navbar = () => {
             });
             console.log(data);
             dispatch(logout());
-            navigate('/signin');
         } catch (err) {
             
         }

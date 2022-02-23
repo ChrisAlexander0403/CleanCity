@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/slices/userSlice";
 import axios from 'axios';
 
-const useAuth = async () => {
-    const [auth, setAuth] = useState();
+const useAuth = () => {
+    const [auth, setAuth] = useState(false);
     const [statusCode, setStatusCode] = useState(0);
 
     const user = useSelector(selectUser);
@@ -13,7 +13,7 @@ const useAuth = async () => {
         const validateToken = async () => {
             if (user) {
                 try {
-                    axios.post('http://localhost:5001/api/token', {
+                    await axios.post('http://localhost:5001/api/token', {
                         token: user.accessToken
                     }, {
                         validateStatus: (status) => setStatusCode(status)
@@ -26,9 +26,29 @@ const useAuth = async () => {
             }
         }
         validateToken();
-    }, [statusCode, user])
+    }, [statusCode, user]);
     
     return { auth };
 }
 
 export default useAuth;
+
+export const useAuth2 = () => {
+    useEffect(() => {
+      const validateToken = async () => {
+          if (user) {
+              try {
+                  await axios.post('http://localhost:5001/api/token', {
+                      token: user.accessToken
+                  }, {
+                      validateStatus: (status) => setStatusCode(status)
+                  });
+              } catch (error) {
+                  console.log(error)
+              }
+              console.log(statusCode);
+          }
+      }
+      validateToken();
+    }, []);
+}
