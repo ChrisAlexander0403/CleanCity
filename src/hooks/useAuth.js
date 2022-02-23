@@ -34,6 +34,10 @@ const useAuth = () => {
 export default useAuth;
 
 export const useAuth2 = () => {
+    const [auth, setAuth] = useState(false);
+    const [statusCode, setStatusCode] = useState(0);
+
+    const user = useSelector(selectUser);
     useEffect(() => {
       const validateToken = async () => {
           if (user) {
