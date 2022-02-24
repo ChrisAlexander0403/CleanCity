@@ -21,7 +21,7 @@ const Reports = () => {
 
     const updateUploadedFiles = (files) => setValues({ ...values, files: files});
 
-    const submitForm = async ({ title, description, place, status, files }) => {
+    const submitForm = async ({ title, description, place, files }) => {
         try {
             await axios.post('http://localhost/5000/api/reports', {
                 title: title,
@@ -65,7 +65,7 @@ const Reports = () => {
                     {errors.description && <span className='error'>{errors.description}</span>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="place">Lugar</label>
+                    <label htmlFor="place">Dirección</label>
                     <input 
                         id='place'
                         type='text'
