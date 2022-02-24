@@ -22,14 +22,15 @@ const Reports = () => {
     const updateUploadedFiles = (files) => setValues({ ...values, files: files});
 
     const submitForm = async ({ title, description, place, files }) => {
+        let formData = new FormData();
+        formData.append('files', files);
         try {
-            await axios.post('http://localhost/5000/api/reports', {
-                title: title,
-                description: description,
-                place: place,
-                files: files,
-                user: user._id
+            const { data } = await axios.post('http://localhost:5000/api/reports/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
+            console.log(data)
         } catch (error) {
             console.log(error);
         }
@@ -47,10 +48,10 @@ const Reports = () => {
                         type='text'
                         placeholder='Título'
                         name='title'
-                        value={values.title.replace(/\s+/g, '')}
+                        value={values.title}
                         onChange={handleChange}
                     />
-                    {errors.description && <span className='error'>{errors.description}</span>}
+                    {errors.title && <span className='error'>{errors.title}</span>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Descripción</label>
@@ -59,7 +60,7 @@ const Reports = () => {
                         type='text'
                         placeholder='Descripción'
                         name='description'
-                        value={values.description.replace(/\s+/g, '')}
+                        value={values.description}
                         onChange={handleChange}
                     />
                     {errors.description && <span className='error'>{errors.description}</span>}
@@ -71,7 +72,7 @@ const Reports = () => {
                         type='text'
                         placeholder='Lugar'
                         name='place'
-                        value={values.place.replace(/\s+/g, '')}
+                        value={values.place}
                         onChange={handleChange}
                     />
                     {errors.place && <span className='error'>{errors.place}</span>}
@@ -85,6 +86,7 @@ const Reports = () => {
                     />
                     {errors.file && <span className='error'>{errors.file}</span>}
                 </div>
+                <button type="submit">Reportar</button>
             </form>
         </div>
     );

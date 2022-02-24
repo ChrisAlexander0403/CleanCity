@@ -57,4 +57,5 @@ export const report = (values) => {
     if (!values.description) errors.description = "Ingresa una descripción";
     if (!values.place) errors.place = "Ingrese una dirección";
     if (!values.photo) errors.photo = "Ingrese una foto";
+    return {};
 }
