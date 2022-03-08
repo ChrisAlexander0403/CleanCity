@@ -61,7 +61,7 @@ const removeFile = (fileName) => {
 };
 
     return(
-        <>
+        <div>
             <FileUploadContainer>
                 <p className="drag-drop">Arrastre sus archivos aquí ó</p>
                 <UploadFileBtn type={'button'} onClick={handleUploadBtnClick}>
@@ -100,7 +100,7 @@ const removeFile = (fileName) => {
                     })}
                 </div>
             </FilePreviewContainer>
-        </>
+        </div>
     );
 }
 

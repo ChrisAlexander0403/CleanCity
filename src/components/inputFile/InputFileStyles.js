@@ -18,28 +18,24 @@ export const RemoveIcon = styled(FiTrash2)`
 
 export const FileUploadContainer = styled.div`
     position: relative;
-    margin: 25px 0 15px;
-    border: 2px dotted #444;
-    padding: 25px 20px;
+    border: 1px solid #2E8049;
+    width: 250px;
+    padding: 15px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: none;
     border-radius: 20px;
-    &:hover{
-      border-color: #000;
-    }
 
     .drag-drop {
       font-weight: bold;
-      letter-spacing: 2.2px;
       margin-top: 0;
       text-align: center;
-      color: #000;
+      color: #2E8049;
     }
 
     .size {
-      color: #000;
+      color: #2E8049;
       font-size: 10px;
       margin: 10px 0 0;
     }
@@ -69,14 +65,14 @@ export const UploadFileBtn = styled.button`
   border-radius: 15px;
   appearance: none;
   background-color: transparent;
-  border: 1px solid #000;
+  border: 1px solid #2E8049;
   cursor: pointer;
   font-size: 14px;
   padding: 15px 5px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
-  color: #000;
+  color: #2E8049;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -95,7 +91,7 @@ export const UploadFileBtn = styled.button`
     transform: translateX(-50%);
     width: 0;
     height: 110%;
-    background: #000;
+    background: #2E8049;
     z-index: -1;
     transition: width 250ms ease-in-out;
   }

@@ -30,6 +30,7 @@ const Signin = () => {
       });
       if (data.accessToken) {
         dispatch(login({
+          _id: data._id,
           firstname: data.firstname,
           lastname: data.lastname,
           email: data.email,

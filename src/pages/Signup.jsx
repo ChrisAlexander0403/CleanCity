@@ -65,7 +65,7 @@ const Signup = () => {
             type='text'
             placeholder='Nombre'
             name='firstname'
-            value={values.firstname.replace(/\s+/g, '')}
+            value={values.firstname}
             onChange={handleChange}
           />
         </div>
@@ -77,7 +77,7 @@ const Signup = () => {
             type='text'
             placeholder='Apellidos'
             name='lastname'
-            value={values.lastname.replace(/\s+/g, '')}
+            value={values.lastname}
             onChange={handleChange}
           />
         </div>
@@ -99,7 +99,7 @@ const Signup = () => {
           <input 
             id='password'
             type='password'
-            placeholder='Contraseña'
+            placeholder='Contraseña'border
             name='password'
             value={values.password.replace(/\s+/g, '')}
             onChange={handleChange}

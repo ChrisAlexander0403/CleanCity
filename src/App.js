@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { createGlobalStyle } from 'styled-components';
+import { io } from 'socket.io-client';
 
 import ScrollToTop from './hooks/useScrollToTop';
 import './styles/body.scss';
@@ -13,30 +13,25 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Navbar from './components/navbar/Navbar';
 import Reports from './pages/Reports';
-
-const GlobalStyle = createGlobalStyle`
-  *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Raleway', sans-serif;
-  }
-  body{
-    background: #eee;
-  }
-  a{
-    text-decoration: none;
-    color: #000;
-  }
-  header{
-    grid-area: header;
-  }
-  footer{
-    height: 500px;
-  }
-`;
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/slices/userSlice';
 
 function App() {
+
+  const user = useSelector(selectUser);
+
+  const socket = io();
+
+  socket.on('authenticated', () => {
+    
+    console.log('socket is jwt authenticated');
+  });
+  socket.on('connect', () => {
+    socket.emit('authenticate', { token: user.accessToken });
+  });
+  socket.on('disconnect', () => {
+
+  });
 
   return (
     <>
@@ -46,7 +41,6 @@ function App() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
       </Helmet>
-      <GlobalStyle /> 
       <Router>
         <ScrollToTop>
           <Routes>
