@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Navbar from './components/navbar/Navbar';
 import Reports from './pages/Reports';
+import Campaigns from './pages/Campaigns';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/slices/userSlice';
 
@@ -52,7 +53,7 @@ function App() {
               </header>
               <Routes>
                 <Route exact path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
-                <Route exact path="/campaings" element={<>Campaings</>} />
+                <Route exact path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
                 <Route exact path="/" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />
               </Routes>
