@@ -58,22 +58,26 @@ const Reports = () => {
     const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, report);
 
     useEffect(() => {
-        const getReports = async () => {
+        const intervalId = setInterval(async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/reports', {
-                    _id: user._id
-                },{
+                const { data } = await axios.get('http://localhost:5000/api/reports/', {
+                    params: {
+                        user: user._id  
+                    },
                     headers: {
                         Authorization: `Bearer ${user.accessToken}`
                     }
                 });
-                console.log(data);
                 setReports(data);
             } catch (error) {
                 console.log(error);
             }
+        }, 2500);
+
+        console.log(user._id);
+        return () => {
+            clearInterval(intervalId);
         }
-        getReports();
     }, [user.accessToken, user._id]);
     
 
@@ -143,7 +147,7 @@ const Reports = () => {
                                         <div key={index} className="report">
                                             <div className="report-header">
                                                 <p className="title">{report.title}</p>
-                                                <p className="date">{report.date}</p>
+                                                <p className="date">{report.createdAt}</p>
                                             </div>
                                             <div className="report-content">
                                                 <p className="address">{report.address}</p>
