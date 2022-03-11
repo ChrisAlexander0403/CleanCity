@@ -155,7 +155,7 @@ const Reports = () => {
                                                 <p className="address">{report.place}</p>
                                                 <p className="status">{report.status}</p>
                                             </div>
-                                            <button onClick={() => navigate('/reports/:id')}>Ver detalles <BsArrowRight /></button>
+                                            <button onClick={() => navigate(`/reports/${report._id}`)}>Ver detalles <BsArrowRight /></button>
                                         </div>
                                     );
                                 })}

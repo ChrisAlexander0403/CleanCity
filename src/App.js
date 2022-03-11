@@ -16,6 +16,7 @@ import Reports from './pages/Reports';
 import Campaigns from './pages/Campaigns';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/slices/userSlice';
+import Report from './pages/Report';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
               <Routes>
                 <Route exact path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
                 <Route exact path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
+                <Route exact path="/reports/:id" element={<PrivateRoute><Report /></PrivateRoute>} />
                 <Route exact path="/" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />
               </Routes>
