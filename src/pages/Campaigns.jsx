@@ -11,7 +11,7 @@ import '../styles/reports.scss';
 
 import File from '../components/inputFile/InputFile';
 
-const Reports = () => {
+const Campaigns = () => {
 
     const [values, setValues] = useState({
         title: '',
@@ -19,7 +19,7 @@ const Reports = () => {
         place: '',
         files: []
     }); 
-    const [reports, setReports] = useState([]);
+    const [campaigns, setCampaigns] = useState([]);
 
     const user = useSelector(selectUser);
     const navigate = useNavigate();
@@ -60,7 +60,7 @@ const Reports = () => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            const getReports = async () => {
+            const getCampaigns = async () => {
                 try {
                     const { data } = await axios.get('http://localhost:5000/api/reports',{
                         params: {
@@ -71,13 +71,13 @@ const Reports = () => {
                         }
                     });
                     console.log(data);
-                    setReports(data);
+                    setCampaigns(data);
                 } catch (error) {
                     console.log(error);
                 }
             }
-            getReports();
-        }, 1500);
+            getCampaigns();
+        }, 2500);
 
         return () => clearInterval(intervalId);
     }, [user.accessToken, user._id]);
@@ -89,7 +89,7 @@ const Reports = () => {
                 <div className="reports-container">
                     <section>
                         <div className="create">
-                            <p>Crear nuevo reporte</p>
+                            <p>Crear nueva campaña</p>
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="title">Título</label>
@@ -136,26 +136,26 @@ const Reports = () => {
                                     />
                                     {errors.file && <span className='error'>{errors.file}</span>}
                                 </div>
-                                <button type="submit">Reportar</button>
+                                <button type="submit">Crear campaña</button>
                             </form>
                         </div>
                     </section>
                     <section>
                         <div className="my-reports">
-                            <p>Mis reportes</p>
+                            <p>Mis campañas</p>
                             <div className="reports">
-                                {reports.map((report, index) => {
+                                {campaigns.map((campaign, index) => {
                                     return (
                                         <div key={index} className="report">
                                             <div className="report-header">
-                                                <p className="title">{report.title}</p>
-                                                <p className="date">{report.createdAt.slice(0,10)}</p>
+                                                <p className="title">{campaign.title}</p>
+                                                <p className="date">{campaign.createdAt.slice(0,10)}</p>
                                             </div>
                                             <div className="report-content">
-                                                <p className="address">{report.place}</p>
-                                                <p className="status">{report.status}</p>
+                                                <p className="address">{campaign.place}</p>
+                                                <p className="status">{campaign.status}</p>
                                             </div>
-                                            <button onClick={() => navigate(`/reports/${report._id}`)}>Ver detalles <BsArrowRight /></button>
+                                            <button onClick={() => navigate('/reports/:id')}>Ver detalles <BsArrowRight /></button>
                                         </div>
                                     );
                                 })}
@@ -168,4 +168,4 @@ const Reports = () => {
     );
 }
 
-export default Reports;
+export default Campaigns;

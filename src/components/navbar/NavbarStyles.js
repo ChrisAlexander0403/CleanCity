@@ -25,8 +25,7 @@ export const Nav = styled.nav`
         margin: 0 10px;
 
         & a{
-            padding: 5px 10px;
-            border-radius: 10px;
+            padding: 21px 10px;
             color: #fff;
         }
         & .account {
@@ -47,10 +46,11 @@ export const Nav = styled.nav`
             position: absolute;
             right: 0;
             padding: 10px 0;
-            background: #666;
-            color: #fff;
+            background: #fff;
+            color: #2E8049;
             margin-top: 10px;
             border-radius: 15px;
+            box-shadow: 2px 0 4px 2px rgba(0,0,0,.2);
             transform: translateY(0);
             transition: .5s;
             width: 150px;
@@ -60,7 +60,7 @@ export const Nav = styled.nav`
                 transition: transform .5s ease;
                 border-style: solid;
                 border-width: 0 15px 15px 15px;
-                border-color: transparent transparent #666 transparent;
+                border-color: transparent transparent #fff transparent;
                 top: -10px;
                 right: 10px;
             }
@@ -80,6 +80,7 @@ export const Nav = styled.nav`
     }
 
     & ul li a.active{
-        color: #999;
+        color: #2E8049;
+        background: #fff;
     }
 `;
