@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Slider, { Slide } from '../components/slider/Slider';
 import { selectUser } from '../features/slices/userSlice';
 
 const Report = () => {
@@ -26,17 +27,34 @@ const Report = () => {
                 });
                 setReport(data);
                 console.log(report);
-                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
+            setLoading(false);
         }
         getReport();
-    }, []);
+    }, [id, user, report]);
     
 
   return (
-    !loading && <div>{id}</div>
+    !loading && 
+    <ReportContainer>
+        <Slider>
+            {report.img.map((img, index) => {
+                return (
+                    <Slide img={img} key={index}>
+                        
+                    </Slide>
+                );
+            })}
+        </Slider>
+        <h2>{report.title}</h2>
+        <div className="details">
+            <p>{report.description}</p>
+            <p>{report.place}</p>
+            <p>{report.status}</p>
+        </div>
+    </ReportContainer>
   );
 }
 

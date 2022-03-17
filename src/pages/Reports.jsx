@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useForm from '../hooks/useForm';
 import { report } from '../utils/validations';
+import Modal from '../components/modal/Modal';
 import '../styles/reports.scss';
 
 import File from '../components/inputFile/InputFile';
@@ -162,6 +163,11 @@ const Reports = () => {
                             </div>
                         </div>
                     </section>
+                    <Modal>
+                        <ReportContainer>
+                            <h2>{}</h2>
+                        </ReportContainer>
+                    </Modal>
                 </div>
             </article>
         </main>
