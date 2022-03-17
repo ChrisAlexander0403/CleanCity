@@ -3,14 +3,14 @@ import axios from 'axios';
 import { selectUser } from '../features/slices/userSlice';
 import { useSelector } from 'react-redux';
 import { BsArrowRight } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 
 import useForm from '../hooks/useForm';
 import { report } from '../utils/validations';
-import Modal from '../components/modal/Modal';
 import '../styles/reports.scss';
 
 import File from '../components/inputFile/InputFile';
+import Report from './Report';
 
 const Reports = () => {
 
@@ -59,6 +59,7 @@ const Reports = () => {
 
     const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, report);
 
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             const getReports = async () => {
@@ -78,10 +79,10 @@ const Reports = () => {
                 }
             }
             getReports();
-        }, 1500);
+        }, 3000);
 
         return () => clearInterval(intervalId);
-    }, [user.accessToken, user._id]);
+    }, [user]);
     
 
     return (
@@ -156,18 +157,17 @@ const Reports = () => {
                                                 <p className="address">{report.place}</p>
                                                 <p className="status">{report.status}</p>
                                             </div>
-                                            <button onClick={() => navigate(`/reports/${report._id}`)}>Ver detalles <BsArrowRight /></button>
+                                            <button onClick={() => navigate(`${report._id}`)}>Ver detalles <BsArrowRight /></button>
                                         </div>
                                     );
                                 })}
                             </div>
                         </div>
                     </section>
-                    <Modal>
-                        <ReportContainer>
-                            <h2>{}</h2>
-                        </ReportContainer>
-                    </Modal>
+                    <Routes>
+                        <Route path="/:id" element={<Report />}></Route>
+                    </Routes>
+                    
                 </div>
             </article>
         </main>

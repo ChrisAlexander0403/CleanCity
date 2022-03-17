@@ -9,7 +9,7 @@ import {
     UploadIcon
 } from './InputFileStyles';
 
-const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 2097152;
+const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 5242880;
 const BYTES_PER_KILO_BYTE = 1024;
 
 const convertBytesToKB = (bytes) => Math.round(bytes / BYTES_PER_KILO_BYTE);
@@ -68,7 +68,7 @@ const removeFile = (fileName) => {
                     <UploadIcon/>
                     <span>Cargar {otherProps.multiple ? "archivos" : "archivo"}</span>
                 </UploadFileBtn>
-                <p className='size'>2MB Máximo</p>
+                <p className='size'>5MB Máximo</p>
                 <input className='form-field' type={'file'} ref={fileInput} onChange={handleNewFileUpload} title={''} value={''} {...otherProps}/>
             </FileUploadContainer>
 

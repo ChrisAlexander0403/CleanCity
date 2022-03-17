@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { selectUser } from '../features/slices/userSlice';
 import { useSelector } from 'react-redux';
 import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import 'moment/locale/es-mx';
+import moment from 'moment';
 
 import useForm from '../hooks/useForm';
 import { report } from '../utils/validations';
 import '../styles/reports.scss';
-
-import File from '../components/inputFile/InputFile';
+import Calendar from '../components/calendar/Calendar';
 
 const Campaigns = () => {
 
@@ -17,14 +18,17 @@ const Campaigns = () => {
         title: '',
         description: '',
         place: '',
+        date: '',
         files: []
     }); 
     const [campaigns, setCampaigns] = useState([]);
+    const [calendarIsOpen, setCalendarIsOpen] = useState(false);
+    const [value, setValue] = useState(moment());
+
+    const calendar = useRef(null);
 
     const user = useSelector(selectUser);
     const navigate = useNavigate();
-
-    const updateUploadedFiles = (files) => setValues({ ...values, files: files});
 
     const submitForm = async ({ title, description, place, files }) => {
         let formData = new FormData();
@@ -80,7 +84,7 @@ const Campaigns = () => {
         }, 2500);
 
         return () => clearInterval(intervalId);
-    }, [user.accessToken, user._id]);
+    }, [user]);
     
 
     return (
@@ -104,18 +108,6 @@ const Campaigns = () => {
                                     {errors.title && <span className='error'>{errors.title}</span>}
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="place">Dirección</label>
-                                    <input 
-                                        id='place'
-                                        type='text'
-                                        placeholder='Lugar'
-                                        name='place'
-                                        value={values.place}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.place && <span className='error'>{errors.place}</span>}
-                                </div>
-                                <div className="form-group">
                                     <label htmlFor="description">Descripción</label>
                                     <textarea 
                                         id='description'
@@ -128,12 +120,33 @@ const Campaigns = () => {
                                     {errors.description && <span className='error'>{errors.description}</span>}
                                 </div>
                                 <div className="form-group">
-                                    <label>Imagen</label>
-                                    <File 
-                                        accept={".png,.jpeg,.jpg"} 
-                                        updateFilesCb={updateUploadedFiles}
-                                        multiple
+                                    <label htmlFor="place">Dirección</label>
+                                    <input 
+                                        id='place'
+                                        type='text'
+                                        placeholder='Lugar'
+                                        name='place'
+                                        value={values.place}
+                                        onChange={handleChange}
                                     />
+                                    {errors.place && <span className='error'>{errors.place}</span>}
+                                </div>
+                                <div className="form-group">
+                                    <label for="" >Fecha</label>
+                                    <div className="button"
+                                        ref={calendar}
+                                        onClick={() => setCalendarIsOpen(true)}         
+                                    >
+                                        {value.format('LL')}  
+                                    </div>
+                                    {
+                                        calendarIsOpen && 
+                                        <Calendar 
+                                        value={value} 
+                                        setValue={setValue}
+                                        startingPoint={window.innerWidth - calendar.current.getBoundingClientRect().right}
+                                        close={setCalendarIsOpen}
+                                        />}
                                     {errors.file && <span className='error'>{errors.file}</span>}
                                 </div>
                                 <button type="submit">Crear campaña</button>

@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            if (user.accessToken === null) navigate('/signin');
+            if (!user.accessToken) navigate('/signin');
         }
         else{
             navigate('/signin');

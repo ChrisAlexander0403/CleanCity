@@ -4,6 +4,11 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Slider, { Slide } from '../components/slider/Slider';
 import { selectUser } from '../features/slices/userSlice';
+import { ReportContainer } from '../styles/report';
+import Modal from '../components/modal/Modal';
+import useModal from '../hooks/useModal';
+import { useNavigate } from 'react-router-dom';
+
 
 const Report = () => {
 
@@ -12,6 +17,9 @@ const Report = () => {
 
     const { id } = useParams();
     const user = useSelector(selectUser);
+    const navigate = useNavigate();
+
+    const [isOpen, openModal, closeModal] = useModal(true, navigate);
 
     useEffect(() => {
         setLoading(true);
@@ -32,17 +40,20 @@ const Report = () => {
             }
             setLoading(false);
         }
+        console.log(loading);
         getReport();
-    }, [id, user, report]);
+        //eslint-disable-next-line
+    }, []);
     
 
   return (
-    !loading && 
+    <Modal isOpen={isOpen} closeModal={closeModal} isAdvertisement={false}>
+        {report && 
     <ReportContainer>
         <Slider>
-            {report.img.map((img, index) => {
+            {report.photos.map((img, index) => {
                 return (
-                    <Slide img={img} key={index}>
+                    <Slide image={`http://localhost:5000/assets/img/temporal/${img}`} key={index}>
                         
                     </Slide>
                 );
@@ -54,7 +65,8 @@ const Report = () => {
             <p>{report.place}</p>
             <p>{report.status}</p>
         </div>
-    </ReportContainer>
+    </ReportContainer>}
+    </Modal>
   );
 }
 

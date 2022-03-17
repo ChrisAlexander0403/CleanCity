@@ -17,7 +17,7 @@ export const Container = styled.div`
     display: flex;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 300px;
     overflow: hidden;
 
     & > .slideShow {
@@ -31,6 +31,12 @@ export const Container = styled.div`
         height: 100%;
         transition: .3 ease all;
         z-index: 1;
+
+        & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     } 
 
     & > .controllers {
