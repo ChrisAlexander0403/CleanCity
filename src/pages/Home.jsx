@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 
 import { HomeContainer } from '../styles/home';
+import Campaign from './Campaign';
+import Report from './Report';
 
 const Home = () => {
 
@@ -39,7 +41,10 @@ const Home = () => {
     <>
         <main>
             <article>
-                <h1>Bienvenido a Clean City</h1>
+                <h1 style={{
+                  margin: '20px 30px 0',
+                  color: '#2E8049'
+                }}>Bienvenido a Clean City</h1>
                 <HomeContainer>
                   <div className="reports">
                     <p>Reportes</p>
@@ -57,7 +62,7 @@ const Home = () => {
                                   <p className="address">{report.place}</p>
                                   <p className="status">{report.status}</p>
                               </div>
-                              <button onClick={() => navigate(`${report._id}`)}>Ver detalles <BsArrowRight /></button>
+                              <button onClick={() => navigate(`report/${report._id}`)}>Ver detalles <BsArrowRight /></button>
                           </div>
                         );
                       })}
@@ -79,13 +84,17 @@ const Home = () => {
                                   <p className="address">{campaign.place}</p>
                                   <p className="status">{campaign.status}</p>
                               </div>
-                              <button onClick={() => navigate(`${campaign._id}`)}>Ver detalles <BsArrowRight /></button>
+                              <button onClick={() => navigate(`campaign/${campaign._id}`)}>Ver detalles <BsArrowRight /></button>
                           </div>
                         );
                       })}
                     </div>
                   </div>
                 </HomeContainer>
+                <Routes>
+                  <Route path="campaign/:id" element={<Campaign />}/>
+                  <Route path="report/:id" element={<Report />}/>
+                </Routes>
             </article>
         </main>
     </>

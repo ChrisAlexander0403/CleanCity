@@ -53,12 +53,32 @@ function App() {
               </header>
               <Routes>
                 <Route exact path="/reports/*" element={<PrivateRoute><Reports /></PrivateRoute>} />
-                <Route exact path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/campaigns/*" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
+                <Route exact path="/*" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />
               </Routes>
               <footer>
-                <p>Footer</p>
+                <div>
+                <h2>Propósito</h2>
+                <p>Este proyecto fue diseñado para ayudar a notificar a las autoridades
+                  sobre el problema de basura que tenemos hoy en día.
+                </p>
+                <div className="info">
+                  <p className="class">Aplicaciones para I4.0</p>
+                  <p className="school">Universidad Tecnológica Metropolitana</p>
+                </div>
+                <div className="participants">
+                  <h4>Colaboradores</h4>
+                  <ul>
+                    <li><p>Christian Alexander Vázquez González</p></li>
+                    <li><p>Jordy Javier Hoil Couoh</p></li>
+                    <li><p>Eduardo Emanuel Herrera Pech</p></li>
+                  </ul>
+                </div>
+                </div>
+                <div className="img-container">
+                  <img src="/assets/img/orgullo-utm-01.png" alt="orgullo utm"/>
+                </div>
               </footer>
             </> } />
           </Routes>

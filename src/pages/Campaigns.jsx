@@ -37,7 +37,7 @@ const Campaigns = () => {
                 title: title,
                 description: description,
                 place: place,
-                date: date,
+                date: value,
                 user: user._id
             },{
                 headers: {
@@ -158,13 +158,13 @@ const Campaigns = () => {
                                             <div key={index} className="report">
                                                 <div className="report-header">
                                                     <p className="title">{campaign.title}</p>
-                                                    <p className="date">{campaign.createdAt.slice(0,10)}</p>
+                                                    <p className="date">{campaign.date.slice(0,10)}</p>
                                                 </div>
                                                 <div className="report-content">
                                                     <p className="address">{campaign.place}</p>
                                                     <p className="status">{campaign.status}</p>
                                                 </div>
-                                                <button onClick={() => navigate('/reports/:id')}>Ver detalles <BsArrowRight /></button>
+                                                <button onClick={() => navigate(`${campaign._id}`)}>Ver detalles <BsArrowRight /></button>
                                             </div>
                                         );
                                     })}

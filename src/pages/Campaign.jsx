@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Slider, { Slide } from '../components/slider/Slider';
 import { selectUser } from '../features/slices/userSlice';
 import { CampaignContainer } from '../styles/campaign';
 import Modal from '../components/modal/Modal';
@@ -50,7 +49,7 @@ const Campaign = () => {
     <Modal isOpen={isOpen} closeModal={closeModal} isAdvertisement={false}>
         {campaign && 
     <CampaignContainer>
-        <Slider>
+        {/* <Slider>
             {campaign.photos.map((img, index) => {
                 return (
                     <Slide image={`http://localhost:5000/assets/img/temporal/${img}`} key={index}>
@@ -58,12 +57,13 @@ const Campaign = () => {
                     </Slide>
                 );
             })}
-        </Slider>
+        </Slider> */}
         <h2>{campaign.title}</h2>
         <div className="details">
             <p>{campaign.description}</p>
             <p>{campaign.place}</p>
-            <p>{campaign.status}</p>
+            <p>{campaign.date.slice(0, 10)}</p>
+            <p>Participantes: <span>{campaign.participants.length}</span></p>
         </div>
     </CampaignContainer>}
     </Modal>
