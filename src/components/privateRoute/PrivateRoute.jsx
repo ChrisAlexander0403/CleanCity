@@ -13,7 +13,7 @@ const PrivateRoute = ({ children }) => {
             if (!user.accessToken) navigate('/signin');
         }
         else{
-            navigate('/signin');
+            navigate('/signin', { replace: true });
         }
     }, [user, navigate]);
     

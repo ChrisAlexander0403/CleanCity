@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { ImSpinner2 } from 'react-icons/im';
+import Helmet from 'react-helmet';
 
 import '../styles/signin-signup.scss';
 import useForm from '../hooks/useForm';
@@ -51,41 +52,46 @@ const Signin = () => {
   const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, signin);
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-      <p>Inicia sesión</p>
-        <div className="form-group">
-          <label htmlFor="email">Correo</label>
-          <input 
-            id="email" 
-            type="text" 
-            placeholder="Correo"
-            name="email"
-            value={values.email.replace(/\s+/g, '')}
-            onChange={handleChange}
-          />
-        </div>
-        {errors.email && <span className="error">{errors.email}</span>}
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input 
-            id="password" 
-            type="password" 
-            placeholder="Contraseña"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-          />
-        </div>
-        {errors.password && <span className="error">{errors.password}</span>}
-        {!loading ? <button type='submit'>Iniciar Sesión</button> : 
-          <div className="ring-container">
-            <div className="ring"><ImSpinner2 /></div>
+    <>
+      <Helmet>
+        <title>Inicia sesión</title>
+      </Helmet>
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+        <p>Inicia sesión</p>
+          <div className="form-group">
+            <label htmlFor="email">Correo</label>
+            <input 
+              id="email" 
+              type="text" 
+              placeholder="Correo"
+              name="email"
+              value={values.email.replace(/\s+/g, '')}
+              onChange={handleChange}
+            />
           </div>
-        }
-        <div className="link"><p className="isRegistered">¿Aún no estás registrado?</p>&nbsp;<Link to="/signup">Registrate aquí</Link></div>
-      </form>
-    </div>
+          {errors.email && <span className="error">{errors.email}</span>}
+          <div className="form-group">
+            <label htmlFor="password">Contraseña</label>
+            <input 
+              id="password" 
+              type="password" 
+              placeholder="Contraseña"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+            />
+          </div>
+          {errors.password && <span className="error">{errors.password}</span>}
+          {!loading ? <button type='submit'>Iniciar Sesión</button> : 
+            <div className="ring-container">
+              <div className="ring"><ImSpinner2 /></div>
+            </div>
+          }
+          <div className="link"><p className="isRegistered">¿Aún no estás registrado?</p>&nbsp;<Link to="/signup">Registrate aquí</Link></div>
+        </form>
+      </div>
+    </>
   );
 }
 

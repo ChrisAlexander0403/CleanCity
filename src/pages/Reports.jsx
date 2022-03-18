@@ -4,6 +4,7 @@ import { selectUser } from '../features/slices/userSlice';
 import { useSelector } from 'react-redux';
 import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate, Routes, Route } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import useForm from '../hooks/useForm';
 import { report } from '../utils/validations';
@@ -86,6 +87,10 @@ const Reports = () => {
     
 
     return (
+        <>
+        <Helmet>
+            <title>Reportes</title>
+        </Helmet>
         <main>
             <article>
                 <div className="reports-container">
@@ -146,7 +151,9 @@ const Reports = () => {
                         <div className="my-reports">
                             <p>Mis reportes</p>
                             <div className="reports">
-                                {reports.map((report, index) => {
+                                {!reports.length > 0
+                                    ? <p>No hay reportes aún</p>
+                                    : reports.map((report, index) => {
                                     return (
                                         <div key={index} className="report">
                                             <div className="report-header">
@@ -171,6 +178,7 @@ const Reports = () => {
                 </div>
             </article>
         </main>
+        </>
     );
 }
 

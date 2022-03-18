@@ -4,6 +4,7 @@ import moment from 'moment';
 import axios from 'axios';
 import { ImSpinner2 } from 'react-icons/im';
 import 'moment/locale/es-mx';
+import Helmet from 'react-helmet';
 
 import '../styles/signin-signup.scss';
 import useForm from '../hooks/useForm';
@@ -55,6 +56,10 @@ const Signup = () => {
   const { handleChange, handleSubmit, errors } = useForm(values, setValues, submitForm, signup);
 
   return (
+    <>
+    <Helmet>
+      <title>Regístrate</title>
+    </Helmet>
     <div className="container">
       <form onSubmit={handleSubmit}>
         <p>Registrarse</p>
@@ -159,6 +164,7 @@ const Signup = () => {
         <div className="link"><p className="isRegistered">¿Ya estás registrado?</p>&nbsp;<Link to="/signin">Inicia sesión aquí</Link></div>
       </form>
     </div>
+    </>
   );
 }
 
