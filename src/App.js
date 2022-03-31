@@ -6,8 +6,10 @@ import ScrollToTop from './hooks/useScrollToTop';
 import './styles/body.scss';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+import LogIn from './pages/LogIn';
+// import Signin from './pages/Signin';
+// import Signup from './pages/Signup';
+import Register from './pages/Register';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Navbar from './components/navbar/Navbar';
@@ -28,8 +30,8 @@ function App() {
       <Router>
         <ScrollToTop>
           <Routes>
-            <Route path="/signin" exact element={<Signin />} />
-            <Route path="/signup" exact element={<Signup />} />
+            <Route path="/signin" exact element={<LogIn />} />
+            <Route path="/signup" exact element={<Register />} />
             <Route path="/*" exact element={<>
               <header>
                 <Navbar />
