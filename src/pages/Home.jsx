@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import { useNavigate, Routes, Route } from 'react-router-dom';
+import { selectTheme } from '../features/slices/themeSlice';
 
 import { HomeContainer } from '../styles/home';
 import Campaign from './Campaign';
@@ -12,6 +14,7 @@ const Home = () => {
   const [reports, setReports] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
 
+  const isDark = useSelector(selectTheme);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,9 +46,9 @@ const Home = () => {
             <article>
                 <h1 style={{
                   margin: '20px 30px 0',
-                  color: '#2E8049'
+                  color: `${isDark ? '#62A077' : '#2E8049'}`
                 }}>Bienvenido a Clean City</h1>
-                <HomeContainer>
+                <HomeContainer isDark={isDark}>
                   <div className="reports">
                     <p>Reportes</p>
                     <div className="reports-list">

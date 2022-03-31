@@ -21,7 +21,7 @@ export const Header = styled.div`
     height: 35px;
     align-items: center;
     justify-content: center;
-    background: #b6b6b6;
+    background: ${props => props.isDark ? "#2D2D2D" : "#B6B6B6"};
     
     & ul {
         list-style: none;

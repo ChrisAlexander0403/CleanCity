@@ -18,7 +18,7 @@ const About = () => {
         <div className="banner">
             <img src={isDark ? '/assets/img/banner-dark1.jpg' : '/assets/img/banner-light.jpg'} alt="" />
         </div>
-        <Header>
+        <Header isDark={isDark}>
             <nav>
                 <ul>
                     <li>

@@ -37,7 +37,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <Nav>
+        <Nav isDark={isDark}>
             <Link to="/">Clean City</Link>
             <ul>
                 <li><NavLink to="/">Inicio</NavLink></li>

@@ -8,8 +8,8 @@ export const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    box-shadow: 2px 0 10px 5px #ddd;
-    background: #2E8049;
+    box-shadow: ${props => props.isDark ? '2px 0 15px 8px #111' : '2px 0 10px 5px #999'};
+    background: ${props => props.isDark ? '#174025' : "#2E8049"};
 
     & > a {
         font-size: 28px;
@@ -128,8 +128,9 @@ export const Nav = styled.nav`
     }
 
     & ul li a.active{
-        color: #2E8049;
-        background: #fff;
+        color: ${props => props.isDark ? '#62A077' : "#2E8049"};
+        font-weight: bold;
+        background: ${props => props.isDark ? "#2D2D2D" : "#EEE"};
     }
 `;
 

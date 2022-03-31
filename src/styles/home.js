@@ -6,13 +6,14 @@ export const HomeContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background: ${props => props.isDark ? "#181818" : "#EEE"};
 
     
     & > .reports, & > .campaigns {
         & > p {
                 font-size: 18px;
                 font-weight: 600;
-                color: #2E8049;
+                color: ${props => props.isDark ? '#62A077' : '#2E8049'};
                 margin: 0 20px 20px;
             }
         display: flex;
@@ -20,7 +21,7 @@ export const HomeContainer = styled.div`
         align-items: center;
         width: 400px;
         height: 430px;
-        box-shadow: inset 2px 2px 4px 2px rgba(100,100,100,.2);
+        box-shadow: inset ${props => props.isDark ? '2px 0 15px 8px #111' : '2px 2px 4px 2px rgba(100,100,100,.2)'};
         border-radius: 20px;
         padding: 20px;
         overflow-y: auto;
