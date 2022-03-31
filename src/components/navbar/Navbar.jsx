@@ -30,8 +30,9 @@ const Navbar = () => {
             <Link to="/">Clean City</Link>
             <ul>
                 <li><NavLink to="/">Inicio</NavLink></li>
-                <li><NavLink to="/reports">Reports</NavLink></li>
-                <li><NavLink to="/campaigns">Campaigns</NavLink></li>
+                <li><NavLink to="/reports">Reportes</NavLink></li>
+                <li><NavLink to="/campaigns">Campañas</NavLink></li>
+                <li><NavLink to="/about">Acerca de</NavLink></li>
                 <li>
                     {
                         user ? 

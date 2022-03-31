@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { io } from 'socket.io-client';
 
 import ScrollToTop from './hooks/useScrollToTop';
 import './styles/body.scss';
@@ -14,25 +13,9 @@ import NotFound from './pages/NotFound';
 import Navbar from './components/navbar/Navbar';
 import Reports from './pages/Reports';
 import Campaigns from './pages/Campaigns';
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/slices/userSlice';
+import About from './pages/About';
 
 function App() {
-
-  const user = useSelector(selectUser);
-
-  const socket = io();
-
-  socket.on('authenticated', () => {
-    
-    console.log('socket is jwt authenticated');
-  });
-  socket.on('connect', () => {
-    socket.emit('authenticate', { token: user.accessToken });
-  });
-  socket.on('disconnect', () => {
-
-  });
 
   return (
     <>
@@ -54,6 +37,7 @@ function App() {
               <Routes>
                 <Route exact path="/reports/*" element={<PrivateRoute><Reports /></PrivateRoute>} />
                 <Route exact path="/campaigns/*" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
+                <Route exact path="/about/*" element={<About />} />
                 <Route exact path="/*" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />
               </Routes>

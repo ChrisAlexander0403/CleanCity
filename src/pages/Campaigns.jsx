@@ -23,6 +23,7 @@ const Campaigns = () => {
         date: ''
     }); 
     const [campaigns, setCampaigns] = useState([]);
+    const [signedupCampaigns, setSignedupCampaigns] = useState([]);
     const [calendarIsOpen, setCalendarIsOpen] = useState(false);
     const [value, setValue] = useState(moment());
 
@@ -31,7 +32,7 @@ const Campaigns = () => {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
 
-    const submitForm = async ({ title, description, place, date }) => {
+    const submitForm = async ({ title, description, place }) => {
         try {
             await axios.post('http://localhost:5000/api/campaigns/', {
                 title: title,
@@ -70,7 +71,23 @@ const Campaigns = () => {
                     console.log(error);
                 }
             }
+            const getSignedupCampaigns = async () => {
+                try {
+                    const { data } = await axios.get('http://localhost:5000/api/campaigns/getSubscribedCampaigns', {
+                        params: {
+                            user: user._id
+                        },
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`
+                        }
+                    });
+                    setSignedupCampaigns(data);
+                } catch(error) {
+                    console.log(error);
+                }
+            }
             getCampaigns();
+            getSignedupCampaigns();
         }, 2500);
 
         return () => clearInterval(intervalId);
@@ -154,6 +171,30 @@ const Campaigns = () => {
                                     {!campaigns.length > 0
                                         ? <p>No hay campañas aún</p>
                                         : campaigns.map((campaign, index) => {
+                                        return (
+                                            <div key={index} className="report">
+                                                <div className="report-header">
+                                                    <p className="title">{campaign.title}</p>
+                                                    <p className="date">{campaign.date.slice(0,10)}</p>
+                                                </div>
+                                                <div className="report-content">
+                                                    <p className="address">{campaign.place}</p>
+                                                    <p className="status">{campaign.status}</p>
+                                                </div>
+                                                <button onClick={() => navigate(`${campaign._id}`)}>Ver detalles <BsArrowRight /></button>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div className="my-reports">
+                                <p>Campañas en las que estás inscrito</p>
+                                <div className="reports">
+                                    {!campaigns.length > 0
+                                        ? <p>Aún no te has inscrito a ninguna campaña</p>
+                                        : signedupCampaigns.map((campaign, index) => {
                                         return (
                                             <div key={index} className="report">
                                                 <div className="report-header">

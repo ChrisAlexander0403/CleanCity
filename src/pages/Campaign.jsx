@@ -20,6 +20,20 @@ const Campaign = () => {
 
     const [isOpen, openModal, closeModal] = useModal(true, navigate, '/campaigns');
 
+    const handleClick = async () => {
+        if(user) navigate('/signin', { replace: true });
+        const { data } = await axios.post('http://localhost:5000/api/campaigns/signup', {
+            body: {
+                campaign: campaign._id,
+                user: user._id
+            },
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`
+            }
+        });
+        setCampaign(data);
+    }
+
     useEffect(() => {
         setLoading(true);
         const getCampaign = async () => {
@@ -33,7 +47,7 @@ const Campaign = () => {
                     }
                 });
                 setCampaign(data);
-                console.log(campaign);
+                console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -59,12 +73,16 @@ const Campaign = () => {
             })}
         </Slider> */}
         <h2>{campaign.title}</h2>
+        <h4>{campaign.user}</h4>
         <div className="details">
             <p>{campaign.description}</p>
             <p>{campaign.place}</p>
             <p>{campaign.date.slice(0, 10)}</p>
             <p>Participantes: <span>{campaign.participants.length}</span></p>
         </div>
+        {campaign.user !== (user.firstname + ' ' + user.lastname) && 
+            <button onClick={handleClick}>{!campaign.participants.includes(user._id ? 'Inscribirse' : 'Cancelar')}</button>
+        }
     </CampaignContainer>}
     </Modal>
   );
