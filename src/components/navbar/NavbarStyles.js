@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 export const Nav = styled.nav`
     display: flex;
@@ -74,6 +75,53 @@ export const Nav = styled.nav`
             }
         }
 
+        & .theme-button-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 75px; 
+                user-select: none;
+
+                & .switch {
+                    position: relative;
+                    width: 40px;
+                    height: 20px;
+                    background: #c6c6c6;
+                    border-radius: 10px;
+                    outline: none;
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+                    transition: .5s;
+                    cursor: pointer;
+                    user-select: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+
+                    &:checked{
+                        background: #0082cc;
+                    }
+
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        top: 0;
+                        left: 0;
+                        background: #fff;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+                        transform: scale(1.1);
+                        transition: .5s;
+                        user-select: none;
+                    }
+
+                    &:checked:before{
+                        left: 20px;
+                        user-select: none;
+                    }
+                }
+            }
+
         & .account:hover .options {
             display: block;
         }
@@ -82,5 +130,22 @@ export const Nav = styled.nav`
     & ul li a.active{
         color: #2E8049;
         background: #fff;
+    }
+`;
+
+
+export const Sun = styled(FaSun)`
+    color: #ffef00;
+    font-size: 25px;
+    @media screen and (max-width: 480px){
+        font-size: 35px;
+    }
+`;
+
+export const Moon = styled(FaMoon)`
+    color: #fff;
+    font-size: 20px;
+    @media screen and (max-width: 480px){
+        font-size: 30px;
     }
 `;

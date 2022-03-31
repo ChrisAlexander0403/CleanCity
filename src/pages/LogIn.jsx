@@ -62,7 +62,7 @@ export default function LogIn() {
             <div className="form-container">
                 <div className="container">
                     <div className="background">
-                        <img src={isDark ? '/assets/img/signin-dark.png' : '/assets/img/signin-light.png'} alt="" />
+                        <img src={isDark ? '/assets/img/signin-dark.jpg' : '/assets/img/signin-light.png'} alt="" />
                     </div>
                     <h2>Inicia sesión</h2>
                     <form onSubmit={handleSubmit}>

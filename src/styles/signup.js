@@ -6,12 +6,12 @@ export const SignupContainer = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
-    background: #eee;
+    background: ${props => props.isDark ? '#181818' : '#eee'};
 
     & > .form-container {
         display: flex;
         width: 750px;
-        border-radius: 10px;
+        border-radius: 40px;
         overflow: hidden;
         box-shadow: 10px 10px 10px ${props => props.isDark ? 'rgba(0, 0, 0, .5)' : 'rgba(100, 100, 100, .5)'};
 
@@ -23,16 +23,25 @@ export const SignupContainer = styled.div`
         & > .container {
             position: relative;
             padding: 1.5rem;
-            background: ${props => props.isDark ? 'rgba(0, 0, 0, .75)' : 'rgba(255, 255, 255, .65)'};
+            z-index: 1;
+            background: none;
             min-height: 550px;
             width: 50%;
 
             & > .background {
                 position : absolute;
                 z-index: -1;
+                width: 100%;
                 height: 100%;
                 top: 0;
                 left: 0;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    opacity: 25%;
+                }
             }
 
             & > form {
@@ -54,6 +63,7 @@ export const SignupContainer = styled.div`
                         border-radius: 15px;
                         font-size: 16px;
                         background: none;
+                        color: ${props => props.isDark ? '#fff' : '#000'};
 
                         &:focus {
                             outline: 2px solid #2e8049;
@@ -114,7 +124,7 @@ export const SignupContainer = styled.div`
             display: flex;
             flex-direction: column;
             position: relative;
-            background-color: ${props => props.isDark ? '#0082cc': '#2E8049'};
+            background-color: ${props => props.isDark ? '#2E8049': '#2E8049'};
             padding: 1.5rem;
             min-height: 550px;
             color: #fff;

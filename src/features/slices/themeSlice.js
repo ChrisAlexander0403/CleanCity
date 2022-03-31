@@ -6,8 +6,8 @@ export const themeSlice = createSlice({
         isDark: false
     },
     reducers: {
-        switchTheme: (state, action) => {
-            state.isDark = !action.payload;
+        switchTheme: (state) => {
+            state.isDark = !state.isDark;
         }
     }
 });

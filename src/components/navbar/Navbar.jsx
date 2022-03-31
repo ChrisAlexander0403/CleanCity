@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { BiLogOut } from 'react-icons/bi';
 import axios from 'axios';
 
+import { selectTheme, switchTheme } from '../../features/slices/themeSlice';
 import { logout, selectUser } from '../../features/slices/userSlice';
-import { Nav } from './NavbarStyles';
+import { Moon, Nav, Sun } from './NavbarStyles';
 
 const Navbar = () => {
 
     const user = useSelector(selectUser);
+    const isDark = useSelector(selectTheme);
     const dispatch = useDispatch();
+
+    const switchRef = useRef(null);
 
     const handleLogout = async() => {
         try {
@@ -24,6 +28,13 @@ const Navbar = () => {
             
         }
     }
+
+    useEffect(() => {
+        switchRef.current.addEventListener('click', () => {
+            dispatch(switchTheme());
+        });
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Nav>
@@ -53,6 +64,20 @@ const Navbar = () => {
                             <NavLink to="signup">Registrarse</NavLink>
                         </div>
                     }
+                </li>
+                <li>
+                <div className="theme-button-container">
+                    { 
+                        !isDark ? <Sun />
+                        : <Moon />
+                    }
+                    <input className="switch" 
+                        type="checkbox" 
+                        name=""
+                        ref={switchRef}
+                        defaultChecked={isDark && true}
+                    />
+                </div>
                 </li>
             </ul>
         </Nav>

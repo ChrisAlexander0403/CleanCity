@@ -65,7 +65,9 @@ export default function Register() {
         <SignupContainer isDark={isDark}>
             <div className="form-container">
                 <div className="container">
-                    <img className="background" src={isDark ? "/assets/img/signin-dark.jpg" : "/assets/img/signin-light.jpg"} alt="" />
+                    <div className="background">
+                        <img src={isDark ? '/assets/img/signin-dark.jpg' : '/assets/img/signin-light.png'} alt="" />
+                    </div>
                     <h2 isDark={isDark}>Regístrate</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
