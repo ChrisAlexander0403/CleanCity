@@ -19,6 +19,11 @@ const Purpose = () => {
       Además, aproximadamente una tercera parte de los residuos acaban en basurales, vertederos que no garantizan una adecuada protección del medioambiente y la salud.
       La disposición final de desechos de manera no controlada o su falta o incorrecta recolección genera los basurales a cielo abierto. Dentro de estos, los de mayor riesgo son aquellos donde, de forma sistemática e indiscriminada, se arrojan los residuos en arroyos o espacios abandonados o sin control ni protección, quemados intencionalmente como forma de reducir su volumen o por autocombustión y dejados para que distintos actores distribuyan su carga contaminante.
       Estos basurales pueden llegar a tener millones de toneladas y ocupar espacios superiores a las 100 hectáreas.
+      <h4>Desafío</h4>
+      Reducir y limpiar las zonas donde se acumulen las grandes cantidades de basura en las colonias.
+      <h4>Alcance</h4> 
+      Reducir y limpiar la basura en las calles, los usuarios que usen la página podrán mandar su reporte y en un tiempo determinado se hará caso para poder crear una campaña e ir a limpiar esa zona contaminada.
+
       </div>
     </PurposeContainer>
   )
