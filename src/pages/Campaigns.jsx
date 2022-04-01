@@ -13,6 +13,8 @@ import { report } from '../utils/validations';
 import '../styles/reports.scss';
 import Calendar from '../components/calendar/Calendar';
 import Campaign from './Campaign';
+import { CampaignsContainer } from '../styles/campaigns';
+import { selectTheme } from '../features/slices/themeSlice';
 
 const Campaigns = () => {
 
@@ -30,6 +32,7 @@ const Campaigns = () => {
     const calendar = useRef(null);
 
     const user = useSelector(selectUser);
+    const isDark = useSelector(selectTheme);
     const navigate = useNavigate();
 
     const submitForm = async ({ title, description, place }) => {
@@ -101,7 +104,7 @@ const Campaigns = () => {
             </Helmet>
             <main>
                 <article>
-                    <div className="reports-container">
+                    <CampaignsContainer isDark={isDark}>
                         <section>
                             <div className="create">
                                 <p>Crear nueva campaña</p>
@@ -179,7 +182,6 @@ const Campaigns = () => {
                                                 </div>
                                                 <div className="report-content">
                                                     <p className="address">{campaign.place}</p>
-                                                    <p className="status">{campaign.status}</p>
                                                 </div>
                                                 <button onClick={() => navigate(`${campaign._id}`)}>Ver detalles <BsArrowRight /></button>
                                             </div>
@@ -215,7 +217,7 @@ const Campaigns = () => {
                         <Routes>
                             <Route path="/:id" element={<Campaign />}></Route>
                         </Routes>
-                    </div>
+                    </CampaignsContainer>
                 </article>
             </main>
         </>

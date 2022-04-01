@@ -59,7 +59,7 @@ export const SigninContainer = styled.div`
 
                     & > input{
                         padding: 5px 15px;
-                        border: 1px solid #2E8049;
+                        border: ${props => props.isDark ? '1px solid #174025' : "1px solid #2E8049"};
                         border-radius: 15px;
                         font-size: 16px;
                         background: none;
@@ -77,7 +77,7 @@ export const SigninContainer = styled.div`
                     margin-top: 10px;
                     border-radius: 20px;
                     border: none;
-                    background: #2E8049;
+                    background: ${props => props.isDark ? '#174025' : "#2E8049"};
                     color: #fff;
                     align-self: center;
                     font-size: 16px;
@@ -124,7 +124,7 @@ export const SigninContainer = styled.div`
             display: flex;
             flex-direction: column;
             position: relative;
-            background-color: ${props => props.isDark ? '#2E8049': '#2E8049'};
+            background: ${props => props.isDark ? '#174025' : "#2E8049"};
             padding: 1.5rem;
             min-height: 550px;
             color: #fff;

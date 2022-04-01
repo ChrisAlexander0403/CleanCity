@@ -41,7 +41,7 @@ export const HomeContainer = styled.div`
             border-radius: 50px;
             padding: 10px 30px;
             margin-bottom: 18px;
-            box-shadow: 2px 2px 4px 2px rgba(100,100,100,.2);
+            box-shadow: ${props => props.isDark ? '2px 0 15px 8px #111' : '2px 2px 4px 2px rgba(100,100,100,.2)'};
 
             & > .report-header {
                 display: flex;
@@ -95,7 +95,7 @@ export const HomeContainer = styled.div`
             border-radius: 50px;
             padding: 10px 30px;
             margin-bottom: 18px;
-            box-shadow: 2px 2px 4px 2px rgba(100,100,100,.2);
+            box-shadow: ${props => props.isDark ? '2px 0 15px 8px #111' : '2px 2px 4px 2px rgba(100,100,100,.2)'};
 
             & > .campaign-header {
                 display: flex;

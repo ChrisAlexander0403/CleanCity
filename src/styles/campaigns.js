@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const ReportsContainer = styled.div`
+export const CampaignsContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     min-height: calc(100vh - 60px);
@@ -109,6 +109,7 @@ export const ReportsContainer = styled.div`
                         color: #2E8049;
                         font-size: 18px;
                         font-weight: 600;
+                        max-width: 200px;
                     }
 
                     & > .date {
@@ -118,10 +119,7 @@ export const ReportsContainer = styled.div`
 
                 & > .report-content {
                     & > .address {
-                        color: ${props => props.isDark ? '#FFF' : '#000'}
-                    }
-                    & > .status {
-                        color: #666;
+                        color: ${props => props.isDark ? '#FFF' : '#000'};
                     }
                 }
 
@@ -140,4 +138,4 @@ export const ReportsContainer = styled.div`
             }
         }
     }
-`;  
+`;

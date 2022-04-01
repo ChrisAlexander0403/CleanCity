@@ -12,6 +12,8 @@ import '../styles/reports.scss';
 
 import File from '../components/inputFile/InputFile';
 import Report from './Report';
+import { ReportsContainer } from '../styles/reports';
+import { selectTheme } from '../features/slices/themeSlice';
 
 const Reports = () => {
 
@@ -24,6 +26,7 @@ const Reports = () => {
     const [reports, setReports] = useState([]);
 
     const user = useSelector(selectUser);
+    const isDark = useSelector(selectTheme);
     const navigate = useNavigate();
 
     const updateUploadedFiles = (files) => setValues({ ...values, files: files});
@@ -93,7 +96,7 @@ const Reports = () => {
         </Helmet>
         <main>
             <article>
-                <div className="reports-container">
+                <ReportsContainer isDark={isDark}>
                     <section>
                         <div className="create">
                             <p>Crear nuevo reporte</p>
@@ -175,7 +178,7 @@ const Reports = () => {
                         <Route path="/:id" element={<Report />}></Route>
                     </Routes>
                     
-                </div>
+                </ReportsContainer>
             </article>
         </main>
         </>
