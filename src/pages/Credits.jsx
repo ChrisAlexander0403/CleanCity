@@ -26,7 +26,7 @@ const Credits = () => {
         <p>Aurelio Mex Mex</p>
         <h4>Colegio</h4>
         <p>Universidad Tecnológica Metropolitana</p>
-        <h6>All Rights Reserved</h6>
+        <h6>©All Rights Reserved</h6>
       </div>
     </CreditsContainer>
   )

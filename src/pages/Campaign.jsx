@@ -20,18 +20,41 @@ const Campaign = () => {
 
     const [isOpen, openModal, closeModal] = useModal(true, navigate, '/campaigns');
 
-    const handleClick = async () => {
-        if(user) navigate('/signin', { replace: true });
-        const { data } = await axios.post('http://localhost:5000/api/campaigns/signup', {
-            body: {
+    const handleSubscribe = async () => {
+        if(!user) navigate('/signin', { replace: true });
+        try {
+            const data = await axios.post('http://localhost:5000/api/campaigns/subscribe', {
                 campaign: campaign._id,
                 user: user._id
-            },
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`
-            }
-        });
-        setCampaign(data);
+            }, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`
+                },
+            });
+            if(data.status === 200) console.log(200);
+            console.log(data)
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    const handleUnsubscribe = async () => {
+        try {
+            const data = await axios.post('http://localhost:5000/api/campaigns/unsubscribe', {
+                campaign: campaign._id,
+                user: user._id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`
+                },
+            });
+            if(data.status === 200) console.log(200);
+            console.log(data)
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {
@@ -48,6 +71,7 @@ const Campaign = () => {
                 });
                 setCampaign(data);
                 console.log(data);
+                console.log(user);
             } catch (error) {
                 console.log(error);
             }
@@ -62,7 +86,9 @@ const Campaign = () => {
   return (
     <Modal isOpen={isOpen} closeModal={closeModal} isAdvertisement={false}>
         {campaign && 
-    <CampaignContainer>
+    <CampaignContainer
+        subscribed={!campaign.participants.includes(user._id)  ? false : true}
+    >
         {/* <Slider>
             {campaign.photos.map((img, index) => {
                 return (
@@ -80,8 +106,10 @@ const Campaign = () => {
             <p>{campaign.date.slice(0, 10)}</p>
             <p>Participantes: <span>{campaign.participants.length}</span></p>
         </div>
-        {campaign.user !== (user.firstname + ' ' + user.lastname) && 
-            <button onClick={handleClick}>{!campaign.participants.includes(user._id ? 'Inscribirse' : 'Cancelar')}</button>
+        {campaign.user !== [user.firstname, user.lastname].join(' ') 
+        && <button 
+                onClick={!campaign.participants.includes(user._id)  ? handleSubscribe : handleUnsubscribe}
+            >{!campaign.participants.includes(user._id)  ? 'Inscribirse' : 'Cancelar'}</button>
         }
     </CampaignContainer>}
     </Modal>

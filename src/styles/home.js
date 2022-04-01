@@ -29,6 +29,11 @@ export const HomeContainer = styled.div`
 
     & > .reports > .reports-list {
         width: 100%;
+
+        & > p {
+            color: ${props => props.isDark ? '#fff' : '#000'};
+        }
+
         & > .report {
             position: relative;
             width: 100%;
@@ -78,6 +83,11 @@ export const HomeContainer = styled.div`
     }
     & > .campaigns > .campaigns-list {
         width: 100%;
+
+        & > p {
+            color: ${props => props.isDark ? '#fff' : '#000'};
+        }
+
         & > .campaign {
             position: relative;
             width: 100%;

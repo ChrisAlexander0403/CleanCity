@@ -65,7 +65,6 @@ const Campaigns = () => {
                             Authorization: `Bearer ${user.accessToken}`
                         }
                     });
-                    console.log(data);
                     setCampaigns(data);
                 } catch (error) {
                     console.log(error);
@@ -81,6 +80,7 @@ const Campaigns = () => {
                             Authorization: `Bearer ${user.accessToken}`
                         }
                     });
+                    console.log(data)
                     setSignedupCampaigns(data);
                 } catch(error) {
                     console.log(error);
@@ -192,7 +192,7 @@ const Campaigns = () => {
                             <div className="my-reports">
                                 <p>Campañas en las que estás inscrito</p>
                                 <div className="reports">
-                                    {!campaigns.length > 0
+                                    {!signedupCampaigns.length > 0
                                         ? <p>Aún no te has inscrito a ninguna campaña</p>
                                         : signedupCampaigns.map((campaign, index) => {
                                         return (
