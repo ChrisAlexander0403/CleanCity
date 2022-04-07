@@ -20,6 +20,7 @@ import { Footer } from './styles/app';
 import { selectTheme } from './features/slices/themeSlice';
 import { useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
+import Settings from './pages/Settings';
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
               <Routes>
                 <Route exact path="/campaigns/*" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
                 <Route exact path="/reports/*" element={<PrivateRoute><Reports /></PrivateRoute>} />
+                <Route exact path="/settings/*" element={<Settings />} />
                 <Route exact path="/about/*" element={<About />} />
                 <Route exact path="/*" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />

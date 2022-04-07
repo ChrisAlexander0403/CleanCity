@@ -84,7 +84,11 @@ const Campaign = () => {
     
 
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal} isAdvertisement={false}>
+    <Modal 
+        isOpen={isOpen} 
+        closeModal={closeModal} 
+        type={'cancel'}
+    >
         {campaign && 
     <CampaignContainer
         subscribed={!campaign.participants.includes(user._id)  ? false : true}

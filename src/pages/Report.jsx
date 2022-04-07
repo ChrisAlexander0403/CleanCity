@@ -47,7 +47,11 @@ const Report = () => {
     
 
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal} isAdvertisement={false}>
+    <Modal 
+        isOpen={isOpen} 
+        closeModal={closeModal} 
+        type={'cancel'}
+    >
         {report && 
     <ReportContainer>
         <Slider>

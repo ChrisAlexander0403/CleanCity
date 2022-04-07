@@ -10,6 +10,7 @@ export const Nav = styled.nav`
     padding: 0 30px;
     box-shadow: ${props => props.isDark ? '2px 0 15px 8px #111' : '2px 0 10px 5px #999'};
     background: ${props => props.isDark ? '#174025' : "#2E8049"};
+    transition: all .3s ease;
 
     & > a {
         font-size: 28px;
@@ -148,5 +149,60 @@ export const Moon = styled(FaMoon)`
     font-size: 20px;
     @media screen and (max-width: 480px){
         font-size: 30px;
+    }
+`;
+
+export const ThemeDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75px; 
+    user-select: none;
+    
+    @media screen and (max-width: 1080px){
+        margin: 1rem 0 5rem 0;
+    }
+
+    @media screen and (max-width: 480px){
+        width: 90px;
+    }
+`;
+
+export const Switch = styled.input`
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: #c6c6c6;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+    transition: .5s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:checked{
+        background: #2E8049;
+    }
+
+    &:before{
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+        transform: scale(1.1);
+        transition: .5s;
+        user-select: none;
+    }
+
+    &:checked:before{
+        left: 20px;
+        user-select: none;
     }
 `;

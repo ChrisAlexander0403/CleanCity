@@ -11,7 +11,7 @@ const useImage = (data) => {
             setExists(true);
         }
         image.onerror = function() {
-            setImg('assets/img/not-found.jpg');
+            setImg('/assets/img/person.jpg');
             setExists(false);
         }
         image.src = data;
