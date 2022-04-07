@@ -136,3 +136,105 @@ export const HomeContainer = styled.div`
         }
     }
 `;
+
+export const Info = styled.div`
+    padding: 30px 100px 0;
+    color: ${props => props.isDark ? '#fff' : '#000'};
+    margin-bottom: 50px;
+
+    & > p {
+        margin-bottom: 10px;
+    }
+`;
+
+export const Banner = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 400px;
+    background: ${props => props.isDark ? '#174025' : "#2E8049"};
+    overflow: hidden;
+
+    &:last-child {
+        margin-bottom: 50px;
+    }
+
+    & > .banner-img {
+        position: relative;
+        width: 610px;
+        height: 100%;
+        background: ${props => props.isDark ? '#282828' : '#AAA'};  
+        clip-path: polygon(0 0, 78% 0, 100% 100%, 0% 100%);
+
+        & > .img-container {
+            width: 600px;
+            height: 100%;
+            clip-path: polygon(0 0, 78% 0, 100% 100%, 0% 100%);
+
+            & > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    & > .banner-info {
+        width: calc(100% - 610px);
+        height: 100%;
+        padding: 20px 50px;
+        color: #fff;
+
+        & > p {
+            margin: 30px 20px;
+            font-size: 18px;
+        }
+    }
+`;
+
+export const BannerReverse = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+    height: 400px;
+    background: ${props => props.isDark ? '#174025' : "#2E8049"};
+    overflow: hidden;
+
+    &:last-child {
+        margin-bottom: 50px;
+    }
+
+    & > .banner-img {
+        position: relative;
+        width: 610px;
+        height: 100%;
+        background: ${props => props.isDark ? '#282828' : '#AAA'};  
+        clip-path: polygon(22% 0, 100% 0, 100% 100%, 0% 100%);
+
+        & > .img-container {
+            width: 600px;
+            height: 100%;
+            margin-left: 10px;
+            clip-path: polygon(22% 0, 100% 0, 100% 100%, 0% 100%);
+
+            & > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    & > .banner-info {
+        width: calc(100% - 610px);
+        height: 100%;
+        padding: 20px 50px;
+        color: #fff;
+
+        & > p {
+            margin: 30px 20px;
+            font-size: 18px;
+        }
+    }
+`;

@@ -1,31 +1,50 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import { BiLogOut } from 'react-icons/bi';
-import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { IoMdArrowDropdown, IoMdSettings } from 'react-icons/io';
+// import axios from 'axios';
 
 import { selectTheme } from '../../features/slices/themeSlice';
-import { logout, selectUser } from '../../features/slices/userSlice';
+import { selectUser } from '../../features/slices/userSlice';
 import { Nav } from './NavbarStyles';
 
 const Navbar = () => {
 
+    const [visible, setVisible] = useState(false);
+
+    const options = useRef(null);
+
+    const navigate = useNavigate()
     const user = useSelector(selectUser);
     const isDark = useSelector(selectTheme);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    const handleLogout = async() => {
-        try {
-            const { data } = await axios.post('http://localhost:5001/api/logout', {
-                email: user.email,
-                refreshToken: user.refreshToken
-            });
-            console.log(data);
-            dispatch(logout());
-        } catch (err) {
+    // const handleLogout = async() => {
+    //     try {
+    //         const { data } = await axios.post('http://localhost:5001/api/logout', {
+    //             email: user.email,
+    //             refreshToken: user.refreshToken
+    //         });
+    //         console.log(data);
+    //         dispatch(logout());
+    //     } catch (err) {
             
-        }
+    //     }
+    // }
+
+    const handleClick = () => {
+        navigate('/settings');
+        setVisible(false);
     }
+
+    useEffect(() => {
+        if(visible) {
+            options.current.style.display = 'block';
+        } else {
+            options.current.style.display = 'none';
+        }
+    }, [visible]);
+    
 
     return (
         <Nav isDark={isDark}>
@@ -40,10 +59,13 @@ const Navbar = () => {
                         user ? 
                         <div className="account">
                             <p className="user">{user.firstname + ' ' + user.lastname}</p>
-                            <div className="options">
+                            <div className="options-button" onClick={() => setVisible(!visible)}>
+                                <IoMdArrowDropdown style={{ width: '18px', height: '18px' }} />
+                            </div>
+                            <div className="options" ref={options}>
                                 <ul>
                                     <li>
-                                        <div className="option" onClick={handleLogout}><BiLogOut /> &nbsp;Sign Out</div>
+                                        <div className="option" onClick={handleClick}><IoMdSettings /> &nbsp; Configuración</div>
                                     </li>
                                 </ul>
                             </div>

@@ -1,32 +1,34 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../features/slices/themeSlice';
-import useImage from '../hooks/useImage';
+// import useImage from '../hooks/useImage';
 import { AccountContainer } from '../styles/account'
-// import { selectUser } from '../features/slices/userSlice';
+import { selectUser } from '../features/slices/userSlice';
+import { FaUser } from 'react-icons/fa';
 
 const Account = () => {
 
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const isDark = useSelector(selectTheme);
-  const { img } = useImage('');
+  // const { img } = useImage('');
   return (
     <AccountContainer isDark={isDark}>
       <div className="user">
         <div className="user-image">
           <div className="img-container">
-            <img src={img} alt="" />
+            {/* <img src={img} alt="" /> */}
+            <FaUser style={{ fontSize: '110px', color: `${isDark ? '#383838' : '#CCC'}` }} />
           </div>
         </div>
         <div className="header">
-          {/* <p>{user.firstname + user.lastname}</p> */}
-          <p>Christian Alexander Vázquez González</p>
+          <p>{user.firstname + ' ' + user.lastname}</p>
+          {/* <p>Christian Alexander Vázquez González</p> */}
         </div>
         <div className="content">
           <div className="content-line">
             <p>Correo</p>
-            {/* <p>{user.email}</p> */}
-            <p>spideralex44@gmail.com</p>
+            <p>{user.email}</p>
+            {/* <p>spideralex44@gmail.com</p> */}
           </div>
           <div className="content-line">
             <p>Cumpleaños</p>
@@ -35,8 +37,8 @@ const Account = () => {
           </div>
           <div className="content-line">
             <p>Celular</p>
-            {/* <p>{user.phone}</p> */}
-            <p>9997466773</p>
+            <p>{user.phone}</p>
+            {/* <p>9997466773</p> */}
           </div>
           <div className="content-line">
             <p>Reportes realizados</p>

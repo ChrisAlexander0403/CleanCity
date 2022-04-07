@@ -4,6 +4,7 @@ export const AccountContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-top: 25px;
 
     & > .user {
         display: flex;
@@ -14,7 +15,6 @@ export const AccountContainer = styled.div`
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: #fff;
 
             &::before {
                 position: absolute;
@@ -25,10 +25,14 @@ export const AccountContainer = styled.div`
                 width: 212px;
                 height: 212px;
                 border-radius: 50%;
-                background: ${props => props.isDark ? '#282828' : '#DDD'};
+                background: ${props => props.isDark ? '#383838' : '#CCC'};
             }
 
             & > .img-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: ${props => props.isDark ? '#181818' : '#EEE'};
                 width: 100%;
                 height: 100%;
                 border-radius: 100%;

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, Routes, Route } from 'react-router-dom';
 import { selectTheme } from '../features/slices/themeSlice';
 
-import { HomeContainer } from '../styles/home';
+import { Banner, BannerReverse, HomeContainer, Info } from '../styles/home';
 import Campaign from './Campaign';
 import Report from './Report';
 
@@ -45,9 +45,32 @@ const Home = () => {
         <main>
             <article>
                 <h1 style={{
+                  fontSize: '28px',
                   margin: '20px 30px 0',
                   color: `${isDark ? '#62A077' : '#2E8049'}`
                 }}>Bienvenido a Clean City</h1>
+                <Info isDark={isDark}>
+                  <p>La aplicación de reportes de basura donde la limpieza de las calles es prioridad, donde tu reporte puede
+                    significar una calle limpia.
+                  </p>
+                  <p>A continuación aparecen los reportes y campañas más recientes.</p>
+                </Info>
+                <Banner isDark={isDark}>
+                  <div className="banner-img">
+                    <div className="img-container">
+                      <img src="/assets/img/banner1.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div className="banner-info">
+                    <h2>Mantener las calles limpias es trabajo de todos</h2>
+                    <p>Tus reportes nos ayudan a encontrar sitios con grandes cantidades de basura, notificar a nuestros
+                      recolectores y mantener las calles de tu vecindad siempre limpias.
+                    </p>
+                    <p>Tu cooperación marca la diferencia, y no te preocupes por tu privacidad, tu reporte se mantiene anónimo
+                      de otros usuarios.
+                    </p>
+                  </div>
+                </Banner>
                 <HomeContainer isDark={isDark}>
                   <div className="reports">
                     <p>Reportes</p>
@@ -94,6 +117,22 @@ const Home = () => {
                     </div>
                   </div>
                 </HomeContainer>
+                <BannerReverse isDark={isDark}>
+                  <div className="banner-img">
+                    <div className="img-container">
+                      <img src="/assets/img/banner2.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div className="banner-info">
+                    <h2>Nuestro equipo de recolección está siempre disponible</h2>
+                    <p>Contamos con un equipo de camiones y recolectores de basura muy amplio para poder cumplir
+                      con la cantidad de reportes generada a diario.
+                    </p>
+                    <p>Los camiones pasan día con día a recoger basura en distintos puntos de la ciudad, cada camión
+                      tiene asignado un área específica, lo que aumenta la efectividad del servicio.
+                    </p>
+                  </div>
+                </BannerReverse>
                 <Routes>
                   <Route path="campaign/:id" element={<Campaign />}/>
                   <Route path="report/:id" element={<Report />}/>
