@@ -67,7 +67,7 @@ function App() {
               <Routes>
                 <Route exact path="/campaigns/*" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
                 <Route exact path="/reports/*" element={<PrivateRoute><Reports /></PrivateRoute>} />
-                <Route exact path="/settings/*" element={<Settings />} />
+                <Route exact path="/settings/*" element={<PrivateRoute><Settings /></PrivateRoute>} />
                 <Route exact path="/about/*" element={<About />} />
                 <Route exact path="/*" element={<Home />} />
                 <Route path="*" exact element={<NotFound />} />

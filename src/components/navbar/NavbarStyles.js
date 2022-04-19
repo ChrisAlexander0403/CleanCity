@@ -51,7 +51,6 @@ export const Nav = styled.nav`
         }
 
         & .account .options {
-            display: none;
             position: absolute;
             right: 0;
             padding: 10px 0;

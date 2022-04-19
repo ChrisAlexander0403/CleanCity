@@ -38,10 +38,12 @@ const Navbar = () => {
     }
 
     useEffect(() => {
-        if(visible) {
-            options.current.style.display = 'block';
-        } else {
-            options.current.style.display = 'none';
+        if(user){
+            if(visible) {
+                options.current.style.visibility = 'hidden';
+            } else {
+                options.current.style.visibility = 'visible';
+            }
         }
     }, [visible]);
     

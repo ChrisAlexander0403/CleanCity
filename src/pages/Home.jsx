@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate, Routes, Route } from 'react-router-dom';
+import PrivateRoute from '../components/privateRoute/PrivateRoute';
 import { selectTheme } from '../features/slices/themeSlice';
 
 import { Banner, BannerReverse, HomeContainer, Info } from '../styles/home';
@@ -134,8 +135,8 @@ const Home = () => {
                   </div>
                 </BannerReverse>
                 <Routes>
-                  <Route path="campaign/:id" element={<Campaign />}/>
-                  <Route path="report/:id" element={<Report />}/>
+                  <Route path="campaign/:id" element={<PrivateRoute><Campaign /></PrivateRoute>}/>
+                  <Route path="report/:id" element={<PrivateRoute><Report /></PrivateRoute>}/>
                 </Routes>
             </article>
         </main>
